@@ -1,0 +1,501 @@
+/* Skill Quest - Web Dev II Final Project
+   Vanilla CSS: variables, Flexbox, Grid, transitions, basic responsiveness */
+
+:root {
+  --bg: #0f0f12;
+  --card: #1a1a1f;
+  --text: #e8e8ed;
+  --muted: #888;
+  --accent: #22c55e;
+  --accent-hover: #16a34a;
+  --danger: #ef4444;
+  --success: #22c55e;
+  --radius: 10px;
+  --shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.light {
+  --bg: #f0f2f5;
+  --card: #fff;
+  --text: #1a1a1f;
+  --muted: #666;
+  --accent: #16a34a;
+  --accent-hover: #15803d;
+  --danger: #dc2626;
+  --shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Outfit", "Segoe UI", system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  transition: background 0.3s, color 0.3s;
+}
+
+#app {
+  width: 100%;
+  max-width: 420px;
+  background: var(--card);
+  padding: 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+/* ----- Home page ----- */
+.home {
+  padding: 20px 24px 24px;
+  text-align: left;
+}
+
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.light .home-header {
+  border-bottom-color: rgba(0,0,0,0.08);
+}
+
+.home-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.home-level {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(34, 197, 94, 0.15);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.light .home-level {
+  background: rgba(22, 163, 74, 0.12);
+}
+
+.home-stats {
+  margin-bottom: 24px;
+}
+
+.home-xp {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.home-xp-current {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.home-xp-sep { margin: 0 2px; }
+
+.home-stats .progress-bar {
+  height: 8px;
+  margin: 0;
+  border-radius: 8px;
+}
+
+.home-stats .progress {
+  border-radius: 8px;
+}
+
+.home-bests {
+  margin-bottom: 24px;
+}
+
+.home-bests-title,
+.home-games-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.home-bests-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.best-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.06);
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.light .best-pill {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.06);
+}
+
+.best-pill-icon { font-size: 1rem; }
+
+.best-pill-value {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.home-bests-empty {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 10px 0 0;
+}
+
+.home-game-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-game-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  text-align: left;
+}
+
+.light .home-game-card {
+  background: rgba(0,0,0,0.02);
+  border-color: rgba(0,0,0,0.08);
+}
+
+.home-game-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.light .home-game-card:hover {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.12);
+}
+
+.home-game-card:active {
+  transform: scale(0.99);
+}
+
+.home-game-card[data-locked="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-style: dashed;
+}
+
+.home-game-card[data-locked="true"]:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.08);
+}
+
+.home-game-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.home-game-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.home-game-desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-left: auto;
+  text-align: right;
+  max-width: 140px;
+}
+
+.home-game-card[data-locked="true"] .home-game-desc {
+  color: var(--muted);
+}
+
+.home-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.light .home-footer {
+  border-top-color: rgba(0,0,0,0.08);
+}
+
+.home-btn-ghost {
+  background: transparent !important;
+  color: var(--muted) !important;
+  font-size: 0.85rem !important;
+  padding: 6px 12px !important;
+}
+
+.home-btn-ghost:hover {
+  color: var(--text) !important;
+}
+
+/* ----- Typography ----- */
+h1, h2, h3 {
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+
+h1 { font-size: 1.5rem; }
+h3 { font-size: 1.1rem; }
+
+p {
+  margin: 8px 0;
+  color: var(--text);
+}
+
+.hint, .best-stats {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ----- Progress ----- */
+.progress-bar {
+  background: rgba(255,255,255,0.1);
+  height: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.light .progress-bar {
+  background: rgba(0,0,0,0.08);
+}
+
+.progress {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.4s ease;
+}
+
+/* ----- Buttons ----- */
+button {
+  padding: 10px 16px;
+  margin: 6px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  background: #555;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+button.opt {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin: 8px 0;
+}
+
+button.opt-correct {
+  background: var(--success);
+  border: 2px solid #0f9d0f;
+}
+
+button.opt-wrong {
+  background: var(--danger);
+  border: 2px solid #b91c1c;
+}
+
+/* ----- Game screens ----- */
+.game-buttons, .footer-actions {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.game-box {
+  margin: 16px 0;
+  padding: 32px;
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  user-select: none;
+}
+
+.light .game-box {
+  background: rgba(0,0,0,0.05);
+}
+
+.game-box.green {
+  background: var(--success) !important;
+  color: #fff;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.game-box.shake {
+  animation: shake 0.35s ease;
+}
+
+.game-feedback {
+  font-size: 0.9rem;
+  margin: 8px 0;
+  min-height: 1.4em;
+}
+
+.game-feedback.error {
+  color: var(--danger);
+}
+
+/* ----- Quiz ----- */
+.quiz-question {
+  font-size: 1.05rem;
+  margin: 16px 0;
+  font-weight: 500;
+}
+
+.quiz-options {
+  margin-top: 12px;
+}
+
+/* ----- Typing ----- */
+.typing-target {
+  font-family: "Consolas", "Monaco", monospace;
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+  border-radius: 8px;
+  margin: 12px 0;
+  font-size: 1rem;
+}
+
+.light .typing-target {
+  background: rgba(0,0,0,0.04);
+}
+
+#typing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#typing-form input {
+  padding: 12px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.light #typing-form input {
+  border-color: rgba(0,0,0,0.15);
+  background: #fff;
+}
+
+#typing-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ----- Result ----- */
+.result {
+  padding: 8px 0;
+}
+
+.result p {
+  margin: 10px 0;
+}
+
+/* ----- Toast (dynamic feedback) ----- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  z-index: 1000;
+  max-width: 90%;
+}
+
+.toast-ok {
+  background: var(--accent);
+  color: #fff;
+}
+
+.toast-error {
+  background: var(--danger);
+  color: #fff;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes slideOut {
+  from { opacity: 1; transform: translateX(-50%) translateY(0); }
+  to   { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 480px) {
+  body { padding: 12px; }
+  #app { padding: 18px; }
+  .game-box { padding: 24px; }
+  button { padding: 10px 12px; font-size: 0.9rem; }
+}
