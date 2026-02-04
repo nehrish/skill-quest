@@ -1,6 +1,6 @@
 # Skill Quest
 
-**Web Dev II (Batch 2029) – Final Project**  
+**Web Dev II – Final Project**  
 A fully functional, interactive DOM-based web application built with **Vanilla JavaScript** (no frameworks).
 
 ---
